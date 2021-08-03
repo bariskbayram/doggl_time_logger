@@ -1,0 +1,18 @@
+- if notice
+  %p#notice.callout.warning.margin-top-2= notice
+
+%h1.text-center="Types"
+
+%table.hover
+  %thead
+    %tr
+      %th="Description"
+      %th{:colspan => "2"}
+  %tbody
+    - @types.each do |type|
+      %tr
+        %td= type.description
+        %td.align-center= link_to 'Edit', edit_type_path(type), class: "button warning margin-0"
+        %td.align-center= link_to 'Destroy', type, method: :delete, class: "button alert margin-0"
+
+= link_to 'New Type', new_type_path, class: "button primary"

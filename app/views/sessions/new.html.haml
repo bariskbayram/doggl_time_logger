@@ -1,0 +1,12 @@
+%h1.text-center= "Login"
+
+= form_with model: @user, url: login_path do |form|
+  .row.align-center.margin-top-3
+    = form.email_field :email, autofocus: true, autocomplete: "email", placeholder:'E-mail', class: "small-4"
+  .row.align-center
+    = form.password_field :password, autocomplete: "password", placeholder:'Password', class: "small-4"
+  .row.align-center
+    = form.submit 'Log In',  {:class => "button primary large-only-expanded"}
+
+.row.align-center 
+  = link_to 'Sign Up', signup_path, class: "button success"

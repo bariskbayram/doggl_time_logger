@@ -1,0 +1,17 @@
+%h1.text-center= "Sign Up"
+
+= form_with model: @user, url: signup_path do |form| 
+	.row.align-center.margin-top-3
+		= form.email_field :email, autofocus: true, autocomplete: "email", placeholder:'E-mail', class: "small-4"
+	.row.align-center
+		= form.password_field :password, autocomplete: "new-password", placeholder:'Password', class: "small-4"
+	.row.align-center
+		= form.password_field :password_confirmation, autocomplete: "new-password", placeholder:'Password Again', class: "small-4"
+	.row.align-center
+		= form.text_field :is_admin, id: :is_user_admin, value: false, type: :hidden
+	.row.align-center
+		= form.submit "Sign Up", class: "button primary"
+
+
+.row.align-center 
+	= link_to 'Login', login_path, class: "button success"

@@ -1,0 +1,35 @@
+- if current_user_is_admin
+  %h1.text-center= "Report Section"
+
+  %h1=@start_checkbox
+  %h1=@stop_checkbox
+  %h1=@s
+
+  .criteria
+    = form_with url: criteria_path, method: :post do |form|
+      .row.margin-bottom-2
+        .column.small-6
+          .field
+            = form.label :log_type
+            = select :log, :type_id, Type.order(:description).collect {|p| [p.description, p.id]}, { include_blank: false, :prompt => true }
+        .column.small-6
+          .field
+            = form.label :users
+            = select :user, :id, User.all.collect {|p| [p.email, p.id]}, { include_blank: false }, {multiple: true, size: 3}
+      .row.margin-bottom-2
+        .column.small-6
+          .row.align-middle
+            = check_box :start, :checkbox, {checked: true}
+            = form.label :start_time, :class => "margin-bottom-1"
+          .field.start-time{ :style => "display: block;"}
+            .row.margin-left-2
+              = form.datetime_select :start_time, {}, {class: "colums small-2"}
+        .column.small-6
+          .row.align-middle
+            = check_box :stop, :checkbox, {checked: true}
+            = form.label :stop_time, :class => "margin-bottom-1"
+          .field.stop-time{ :style => "display: block;"}
+            .row.margin-left-2
+              = form.datetime_select :stop_time, {}, {class: "colums small-2"}
+      .row.align-center
+        = form.submit "Get", {:class => "button primary large-only-expanded"}

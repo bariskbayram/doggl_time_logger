@@ -1,0 +1,26 @@
+- if notice
+  %p#notice.callout.warning.margin-top-2= notice
+
+.row.align-center.flex-dir-column.margin-top-3 
+  %p
+    %strong= "Description: "
+    = @entry.description
+  %p
+    %strong= "Log Type: "
+    = get_type_desc(@entry)
+  %p
+    %strong= "Start Time: "
+    = @entry.start_time
+  %p
+    %strong= "Stop Time: "
+    = @entry.stop_time
+  %p
+    %strong= "Total Time"
+    = calculate_total_time(@entry)
+  %p
+    %strong= "User Email: "
+    = get_user_email(@entry)
+
+= link_to 'Edit', edit_entry_path(@entry), class: "button warning margin-right-2"
+
+= link_to 'Back', entries_path, class: "button secondary margin-right-2"

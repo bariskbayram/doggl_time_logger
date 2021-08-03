@@ -1,0 +1,42 @@
+- if notice
+  %p#notice.callout.warning.margin-top-2= notice
+
+= render 'criteria'
+
+%h1.text-center= "Entries"
+
+%table.hover
+  %thead
+    %tr
+      %th= "Description"
+      %th= "Log Type"
+      %th= "Start Time"
+      %th= "Stop Time"
+      %th= "Total Time"
+      - if current_user_is_admin
+        %th= "User Email"
+      %th{:colspan => "3"}
+  %tbody
+    - @entries.each do |entry|
+      %tr
+        %td
+          = entry.description
+        %td
+          = get_type_desc(entry)
+        %td
+          = entry.start_time
+        %td
+          = entry.stop_time
+        %td
+          = calculate_total_time(entry)
+        - if current_user_is_admin
+          %td
+            = get_user_email(entry)
+        %td
+          = link_to 'Show', entry, class: "button secondary margin-0"
+        %td
+          = link_to 'Edit', edit_entry_path(entry), class: "button warning margin-0"
+        %td
+          = link_to 'Destroy', entry, method: :delete, class: "button alert margin-0"
+
+= link_to 'New Entry', new_entry_path, class: "button primary"

@@ -1,0 +1,31 @@
+= form_with(model: entry) do |form|
+  - if entry.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(entry.errors.count, "error")
+        = "prohibited this entry from being saved"
+      %ul
+        - entry.errors.each do |error|
+          %li= error.full_message
+  .row.margin-bottom-2 
+    .column.small-6
+      .field
+        = form.label :description
+        = form.text_field :description
+    .column.small-6
+      .field
+        = form.label :type_id
+        = form.collection_select :type_id, Type.order(:description), :id, :description, {:prompt=>true}
+  .row.margin-bottom-2 
+    .column.small-6
+      .field
+        = form.label :start_time
+        = form.datetime_select :start_time, {}, {class: "colums small-2"}
+    .column.small-6
+      .field
+        = form.label :stop_time
+        = form.datetime_select :stop_time, {}, {class: "colums small-2"}
+  .field
+    = form.text_field :user_id, id: :log_user_id, value: @current_user.id, type: :hidden
+  .actions
+    = form.submit

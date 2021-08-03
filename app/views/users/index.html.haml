@@ -1,0 +1,25 @@
+%h1.text-center= "User List"
+
+.margin-bottom-2
+  = form_with url: report_path, method: :post do |form|
+    .field
+      = form.label :log_type
+      = select :log_type, :id, ['Daily', 'Weekly', 'Monthly'], { include_blank: false, :prompt => true, :selected=>@log_type }
+    .row.align-center
+      = form.submit "Get", {:class => "button primary large-only-expanded"}
+
+%table.hover
+  %thead
+    %tr
+      %th= "Id"
+      %th= "Email"
+      %th= "Total Time"
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td
+          = user.id
+        %td
+          = user.email
+        %td
+          = calculate_total_times(user, @log_type)
