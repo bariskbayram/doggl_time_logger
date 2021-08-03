@@ -1,24 +1,16 @@
-# README
+# Movie Collection
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Apache-2.0 License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-Things you may want to cover:
+Demo project on RoR.
 
-* Ruby version
+* HAML
+* ZURB Foundation
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[linkedin-shield]: https://img.shields.io/static/v1?label=LINKEDIN&message=BKB&color=<COLOR>
+[linkedin-url]: https://www.linkedin.com/in/bariskbayram/
+[license-shield]: https://img.shields.io/static/v1?label=LICENCE&message=Apache-2.0&color=<COLOR>
+[license-url]: https://github.com/bariskbayram/spring-movie-collection/blob/master/LICENSE
+[notes-shield]: https://img.shields.io/static/v1?label=INFO&message=NOTES&color=<COLOR>
+[notes-url]: https://github.com/bariskbayram/spring-movie-collection/blob/master/project-notes.adoc
