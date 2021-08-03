@@ -3,7 +3,7 @@
 [![Apache-2.0 License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-Demo project on RoR.
+Demo project with RoR.
 
 * HAML
 * ZURB Foundation
