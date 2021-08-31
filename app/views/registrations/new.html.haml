@@ -8,7 +8,7 @@
 	.row.align-center
 		= form.password_field :password_confirmation, autocomplete: "new-password", placeholder:'Password Again', class: "small-4"
 	.row.align-center
-		= form.text_field :is_admin, id: :is_user_admin, value: false, type: :hidden
+		= form.text_field :is_admin, id: :user_admin?, value: false, type: :hidden
 	.row.align-center
 		= form.submit "Sign Up", class: "button primary"
 
