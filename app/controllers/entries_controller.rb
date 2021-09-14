@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
+require 'pagy'
+
 class EntriesController < ApplicationController
   before_action :user_logged_in?
   before_action :set_entry, only: %i[show edit update destroy]
 
   def index
-    @entries = if @current_user.is_admin && @entries.nil?
-                 Entry.all.order('start_time DESC')
-               else
-                 Entry.where(user_id: @current_user.id).order('start_time DESC')
-               end
+    if @current_user.is_admin && @entries.nil?
+      @pagy, @entries = pagy(Entry.all.order('start_time DESC'))
+    else
+      @pagy, @entries = pagy(Entry.where(user_id: @current_user.id).order('start_time DESC'))
+    end
   end
 
   def criteria

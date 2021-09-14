@@ -17,6 +17,7 @@ class TypesController < ApplicationController
 
   def create
     @type = Type.new(type_params)
+    TempWorker.perform_async('CREATE A NEW TYPE')
 
     respond_to do |format|
       if @type.save

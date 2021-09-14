@@ -40,3 +40,6 @@
           = link_to 'Destroy', entry, method: :delete, class: "button alert margin-0"
 
 = link_to 'New Entry', new_entry_path, class: "button primary"
+
+%div.margin-2.text-center
+  != pagy_nav(@pagy)
