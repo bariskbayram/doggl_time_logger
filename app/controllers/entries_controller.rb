@@ -8,7 +8,7 @@ class EntriesController < ApplicationController
 
   def index
     if @current_user.is_admin && @entries.nil?
-      @pagy, @entries = pagy(Entry.all.order('start_time DESC'))
+      @pagy, @entries = pagy(Entry.all.order('start_time DESC').includes(:type).includes(:user))
     else
       @pagy, @entries = pagy(Entry.where(user_id: @current_user.id).order('start_time DESC'))
     end
@@ -29,6 +29,8 @@ class EntriesController < ApplicationController
       @entries = @entries.where(type_id: type) if type.present?
       @entries = @entries.where('start_time > ?', start_time) if start_checkbox.present? && start_checkbox == '1'
       @entries = @entries.where('start_time < ?', stop_time) if stop_checkbox.present? && stop_checkbox == '1'
+
+      @pagy, @entries = pagy(@entries)
 
       @users = User.all
 

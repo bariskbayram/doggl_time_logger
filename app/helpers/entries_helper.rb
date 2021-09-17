@@ -10,6 +10,6 @@ module EntriesHelper
   end
 
   def calculate_total_time(entry)
-    (entry.stop_time - entry.start_time) / (60 * 360)
+    ((entry.stop_time - entry.start_time) / 3600).round(2)
   end
 end

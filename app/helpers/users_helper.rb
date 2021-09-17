@@ -2,12 +2,8 @@
 
 module UsersHelper
   def calculate_total_times(user, log_type)
-    entries = Entry.where('user_id = ? AND start_time > ?', user.id, log_type_to_day(log_type))
-    total = 0
-    entries.each do |entry|
-      total += calculate_total_time(entry)
-    end
-    total
+    entries = Entry.entries_through_time(user.id, log_type_to_day(log_type))
+    entries.inject(0) { |total, entry| total + calculate_total_time(entry) }
   end
 
   def log_type_to_day(log_type)
