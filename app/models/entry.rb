@@ -18,4 +18,5 @@ class Entry < ApplicationRecord
   belongs_to :type
 
   scope :entries_through_time, ->(user_id, day) { where('user_id = ? AND start_time > ?', user_id, day) }
+  after_create_commit { broadcast_append_to 'entries' }
 end

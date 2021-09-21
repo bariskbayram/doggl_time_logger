@@ -11,4 +11,5 @@
 #
 class Type < ApplicationRecord
   has_many :entries
+  after_create_commit { broadcast_append_to 'types' }
 end

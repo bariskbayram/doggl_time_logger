@@ -1,0 +1,23 @@
+%tr
+  %td
+    = entry.description
+  %td
+    = entry.type.description
+  %td
+    = entry.start_time
+  %td
+    = entry.stop_time
+  %td
+    = calculate_total_time(entry)
+  - if current_user_is_admin
+    %td
+      = entry.user.email
+  - else
+    %td
+      = "Not Specified"
+  %td
+    = link_to 'Show', entry, class: "button secondary margin-0"
+  %td
+    = link_to 'Edit', edit_entry_path(entry), class: "button warning margin-0"
+  %td
+    = link_to 'Destroy', entry, method: :delete, class: "button alert margin-0"
